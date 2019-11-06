@@ -7,9 +7,15 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "core-js": "^2.6.5",
+    "firebase": "^6.6.1",
+    "rollup": "^1.20.1",
+    "vee-validate": "^2.2.15",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue2-animate": "^2.1.1",
+    "vuejs-datepicker": "github:tanatwat/datepicker",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

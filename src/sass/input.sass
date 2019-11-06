@@ -1,0 +1,127 @@
+input::placeholder
+   color: #999 !important
+
+.field-label.align-self-center
+   align-self: center
+   padding: 0
+   text-align: left
+   min-width: 150px
+   label
+      font-weight: normal !important
+
+.form-panel
+   border: 1px solid #eee
+   border-radius: 10px
+   box-shadow: 0px 5px 33px -1px #ddd
+   max-width: 650px
+   margin: 0 auto
+   padding: 2rem
+
+.form-wrapper
+   border: 0px solid #ddd
+   margin: -1px
+   padding: 1.25rem 0 1.75rem 0
+
+.field-wrapper
+  padding: 8px 0
+
+.form-title
+   color: #00dbb1
+   font-size: 1.75rem
+   font-weight: bold
+
+.form-heading
+   color: #00dbb1
+   font-size: 1.3rem
+
+.line-input
+   padding: 10px 0 8px 12px
+   border: none
+   border-bottom: 2px solid #ddd
+   width: 100%
+   font-size: 1.2rem
+   &:focus, &:hover
+      border-color: #00dbb1
+   &.is-danger
+      border-color: #ff3860
+   &::before
+      content: "select"
+
+.service-wrapper
+  display: flex
+  align-items: center
+  padding: 15px 0
+.service-cancle
+  margin-right: 15px
+  pointer-events: auto !important
+  color: #00dbb1 !important
+  transition: all .2s ease
+  &:hover
+    transform: scale(1.5, 1.5)
+    color: #ff3860 !important
+  &.disabled
+    color: #ddd !important
+
+@media(max-width: 435px)
+  .service-input
+    flex-wrap: wrap
+    .control:first-child
+      margin-bottom: 15px !important
+      flex-shrink: 0 !important
+      width: 100% !important
+
+.icon-button-flat
+  text-decoration: underline
+.checkbox-button
+  display: flex
+  align-items: center
+  &.checked
+    color: #00dbb1
+  i
+    font-size: 1.5rem
+.icon-button-flat, .checkbox-button
+  color: #333
+  transition: all .2s ease
+  &:hover
+    color: #00dbb1
+  i
+    margin-right: 10px
+
+.total-wrapper
+  display: flex
+  justify-content: space-between
+  align-items: center
+  background: #00dbb1
+  color: #fff
+  padding: 10px
+  font-size: 1.2rem
+  border-radius: 8px
+  > div:nth-child(2)
+    font-size: 1.5rem
+    > span::after
+      content: 'บาท'
+      margin-left: 8px
+.rate-total
+  display: flex
+  flex-direction: column
+
+/* DATE PICKER */
+.calendar
+  align-self: center
+  margin-bottom: 4px
+.date-input
+  cursor: pointer
+  &:hover
+    color: #00dbb1
+    + .calendar-icon
+      color: #00dbb1 !important
+.date-clear-button
+  pointer-events: auto !important
+  color: #00dbb1 !important
+  transition: all .2s ease
+  &:hover
+    transform: scale(1.5, 1.5)
+    color: #ff3860 !important
+
+.submit-wrapper
+  margin-top: 1.75rem
