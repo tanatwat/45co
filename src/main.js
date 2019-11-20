@@ -41,36 +41,69 @@ firebase.initializeApp(firebaseConfig);
 Vue.prototype.$auth = firebase.auth();
 Vue.prototype.$db = firebase.firestore();
 Vue.prototype.$addData = function(col, data) {
-	if(this.$root.user.uid) {
-		this.$root.loading = true
-		var self = this
-		firebase.firestore().collection('users').doc(this.$root.user.uid).collection(col).add(data).then(() => {
-			self.$root.loading = false
-		});
+	if (this.$root.user.uid) {
+		this.$root.loading = true;
+		var self = this;
+		firebase
+			.firestore()
+			.collection('users')
+			.doc(this.$root.user.uid)
+			.collection(col)
+			.add(data)
+			.then(() => {
+				self.$root.loading = false;
+			});
 	}
-}
+};
 
 Vue.prototype.$getData = function(col) {
-	if(this.$root.user.uid) {
-		this.$root.loading = true
-		var self = this
-		let results = []
-		firebase.firestore()
-		.collection("users")
-		.doc(this.$root.user.uid)
-		.collection(col)
-		.get()
-		.then(querySnapshot => {
-		  querySnapshot.forEach(function(doc) {
-			 let data = doc.data()
-			 data.id = doc.id
-			 results.push(data)
-		  });
-		  self.$root.loading = false
-		});
-		return results
-	}
-}
+	// Return a promise to wait for firestore to complete
+	return new Promise((resolve, reject) => {
+		if (this.$root.user.uid) {
+			this.$root.loading = true;
+			var self = this;
+			let results = [];
+			firebase
+				.firestore()
+				.collection('users')
+				.doc(this.$root.user.uid)
+				.collection(col)
+				.get()
+				.then(querySnapshot => {
+					querySnapshot.forEach(function(doc) {
+						let data = doc.data();
+						data.id = doc.id;
+						results.push(data);
+					});
+					self.$root.loading = false;
+					resolve(results)
+				});
+				
+		}
+		
+	});
+
+	// if (this.$root.user.uid) {
+	// 	this.$root.loading = true;
+	// 	var self = this;
+	// 	let results = [];
+	// 	firebase
+	// 		.firestore()
+	// 		.collection('users')
+	// 		.doc(this.$root.user.uid)
+	// 		.collection(col)
+	// 		.get()
+	// 		.then(querySnapshot => {
+	// 			querySnapshot.forEach(function(doc) {
+	// 				let data = doc.data();
+	// 				data.id = doc.id;
+	// 				results.push(data);
+	// 			});
+	// 			self.$root.loading = false;
+	// 		});
+
+	// 	return Promise.resolve(results);
+};
 
 let app = '';
 
