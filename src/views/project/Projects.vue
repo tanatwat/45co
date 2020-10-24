@@ -53,50 +53,70 @@
 				<div class="column">จบ</div>
 				<div class="column"></div>
 			</div>
-			<div class="columns is-multiline" v-for="project in projects">
+			<div class="columns is-multiline" v-for="(project, index) in projects">
 				<div class="column is-4">
-					<a :href="'/projects/board/' + project.id">{{ project.name }}</a>
+					<a :href="'/projects/' + project.id">{{ project.name }}</a>
 				</div>
-				<div class="column is-2">{{ project.client }}</div>
+				<div class="column is-2">{{ project.client.name }}</div>
 				<div class="column is-2">
 					<span class="tag is-warning">Warning</span>
 				</div>
 				<div class="column">{{ $format.date(project.start) }}</div>
 				<div class="column">{{ $format.date(project.end) }}</div>
 				<div class="column has-text-right">
-					<button class="table-button fas fa-ellipsis-v"></button>
+					<div class="dropdown-wrapper">
+						<button
+							class="table-button fas"
+							:class="toggled == index ? 'fa-times-circle has-text-primary' : 'fa-ellipsis-v'"
+							@click="toggleDropdown(index)"
+						></button>
+						<transition name="fade">
+							<div class="table-dropdown" v-show="toggled == index">
+								<router-link :to="'/projects/' + project.id" class="table-dropdown-option"
+									>แก้ไข</router-link
+								>
+								<a @click.prevent="remove(project.id, index)" class="table-dropdown-option">ลบ</a>
+							</div>
+						</transition>
+					</div>
 				</div>
 			</div>
 		</div>
-		<button @click="store">STORE</button>
 	</div>
 </template>
 <script>
 export default {
 	data() {
 		return {
-			projects: []
+			projects: [],
+			toggled: null
 		};
 	},
 	methods: {
 		get() {
-			if (localStorage.getItem('projects') === null) {
-				this.$getData('projects').then(res => {
-					this.projects = res;
-					var parsedObj = JSON.stringify(res);
-					localStorage.projects = parsedObj;
+			this.$getData('projects').then(res => {
+				this.projects = res;
+			});
+		},
+		remove(id, index) {
+			if (confirm('คุณแน่ใจหรือไม่ว่าจะลบโปรเจคนี้?')) {
+				this.$removeData('projects', id, index).then(() => {
+					this.projects.splice(index, 1);
+					this.toggled = null;
 				});
-			} else {
-				try {
-					this.projects = JSON.parse(localStorage.getItem('projects'));
-				} catch (e) {
-					localStorage.removeItem('projects');
-				}
 			}
 		},
-		store() {
-			let parsed = JSON.stringify(this.projects);
-			localStorage.projects = parsed;
+		toggleDropdown(index) {
+			if (this.toggled == index) {
+				this.toggled = null;
+			} else {
+				this.toggled = index;
+			}
+		},
+		clickaway(index) {
+			if (this.toggled !== null) {
+				this.toggled = null;
+			}
 		}
 	},
 	mounted() {

@@ -4,7 +4,7 @@ import Dashboard from './views/Dashboard.vue'
 import Login from './views/_credential/Login.vue'
 import Verify from './views/_credential/Verify.vue'
 import Projects from './views/project/Projects.vue'
-import ProjectPage from './views/project/Projects.vue'
+import ProjectPage from './views/project/ProjectPage.vue'
 import CreateProject from './views/project/CreateProject.vue'
 import Clients from './views/client/Clients.vue'
 import CreateClient from './views/client/CreateClient.vue'
@@ -45,13 +45,14 @@ const router = new Router({
           component: Projects
         },
         {
-          path: '/projects/board/:id',
-          component: ProjectPage
-        },
-        {
           path: '/projects/create',
           component: CreateProject
         },
+        {
+          path: '/projects/:id',
+          component: ProjectPage
+        },
+
         {
           path: '/clients',
           component: Clients

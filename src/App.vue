@@ -9,7 +9,6 @@
           </div>
         </div>
       </div>
-    
 
     <router-view></router-view>
   </div>
@@ -17,12 +16,14 @@
 
 <style lang="sass">
 $primary: #00dbb1
+$primary-invert: #fff
 $input-radius: 5px
 $input-border-color: #ddd
 $input-hover-border-color: $primary
 $input-focus-border-color: $primary
 $input-arrow: $primary
 $label-color: #777
+
 
 .select select,
 .input
@@ -50,7 +51,7 @@ $animationDuration: 0.5s; // specify animation duration. Default value: 1s
   left: 250px
 
 .side-nav
-  position: absolute
+  position: fixed
   display: flex
   flex-direction: column
   padding-top: 100px

@@ -4,7 +4,6 @@
     @input="selected($event)"
     :language="th"
     input-class="input date-input"
-    wrapper-class
     :clear-button="true"
     :disabled-dates="disabledDates"
     ref="dateInput"

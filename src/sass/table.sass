@@ -26,3 +26,29 @@
    margin-left: 10px
    &:hover
       color: #00dbb1
+
+.table-dropdown
+  position: absolute
+  right: 0
+  background: #fff
+  display: flex
+  flex-direction: column
+  border: 1px solid #eee
+  border-radius: 5px
+  box-shadow: 0px 0px 8px 0px #eee
+  margin-top: .5rem
+  margin-right: .5rem
+  z-index: 1
+  a
+    padding: .25rem .75rem
+    color: #777
+    min-width: 80px
+    text-align: center
+    &:not(:last-child)
+      border-bottom: 1px solid #eee
+    &:hover
+      background-color: darken(#fafafa, 2%)
+      color: #00dbb1
+
+.dropdown-wrapper
+  position: relative
